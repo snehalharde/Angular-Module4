@@ -1,7 +1,7 @@
 (function() {
 'use strict';
 
-angular.module('data')
+angular.module('menuApp')
 .config(RoutesConfig);
 
 RoutesConfig.$inject =['$stateProvider', '$urlRouterProvider'];
@@ -15,31 +15,26 @@ function RoutesConfig($stateProvider, $urlRouterProvider){
     templateUrl: 'src/menuapp/templates/home.template.html'
   })
 
-  .state('menucategory', {
-    url: '/menucategory',
-    templateUrl: 'src/shoppinglist/templates/category.template.html',
+  .state('categories', {
+    url: '/categories',
+    templateUrl: 'src/menuapp/templates/category.template.html',
     controller: 'MenuAppController as menucategory',
     resolve: {
-      category: ['MenuDataService', function (MenuDataService) {
-        return MenuDataService.getAllCategories()
-        .then(function (response){
-            return response.data.category;
-        });
+      categories: ['MenuDataService', function (MenuDataService) {
+        return MenuDataService.getAllCategories();
       }]
     }
   })
 
 
-  .state('menuItem', {
-    url: '/menuItem/{itemCd}',
-    templateUrl: 'src/shoppinglist/templates/item.template.html',
+  .state('menulist', {
+    url: '/menulist/{itemCd}',
+    templateUrl: 'src/menuapp/templates/item.template.html',
     controller: 'MenuItemController as menuItem',
     resolve: {
-      menulist: ['$stateParams', 'MenuDataService', function ($stateParams,MenuDataService) {
-        return MenuDataService.getItemsForCategory(itemCd)
-        .then(function (response){
-            return response[$stateParams.itemCd];
-        });
+      menulist: ['$stateParams', 'MenuDataService', 
+        function ($stateParams,MenuDataService) {
+        return MenuDataService.getItemsForCategory($stateParams.itemCd);
       }]
     }
   })

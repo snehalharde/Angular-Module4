@@ -1,8 +1,6 @@
-<!-- <ul>
-  <li ng-repeat="menucategory in $ctrl.menucategory"
-      ui-sref="menuItem({itemCd: categoryShortName})">
-    {{ item.quantity }} of {{ item.name }}
-  </li>
-</ul> -->
+<a ui-sref="home">Home</a> &lt; <span>Categories</span>
 
-<shopping-list category="menucategory.category"></shopping-list>
+<h3>Category List</h3>
+<categories categories="menucategory.items"></categories>
+
+<ui-view></ui-view>

@@ -1,12 +1,12 @@
 (function() {
     'use strict';
 
-angular.module('MenuApp')
-.component('items'),{
-    templateUrl:'item.templates.html',
-    controller:itemsController,
+angular.module('menuApp')
+.component('menulist'),{
+    templateUrl:'src/menuapp/templates/item.template.html',
+   
     bindings:{
-        items:'<'
+        menulist:'<'
     }
 }
 

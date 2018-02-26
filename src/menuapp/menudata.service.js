@@ -1,31 +1,33 @@
-(function (){
-    'use strict';
+(function() {
+  'use strict';
 
-angular.module('MenuApp')
-    .service('MenuDataService', MenuDataService);
-    .constant('ApiBasePath', "https://davids-restaurant.herokuapp.com")
+  angular.module('menuApp')
+  .service('MenuDataService', MenuDataService)
+    .constant('ApiBasePath', "https://davids-restaurant.herokuapp.com");
 
-    MenuDataService.$inject =['$http', 'ApiBasePath'];
-    function MenuDataService($http, ApiBasePath){
+  MenuDataService.$inject = ['$http', 'APiBasePath'];
+  function MenuDataService($http) {
       var service = this;
-
-      service.getAllCategories = function (){
+      service.getAllCategories = function () {
         var response = $http({
-          method: "GET",
-          url: (ApiBasePath + "/categories.json")
-          });
+            method: "GET",
+            url: (ApiBasePath + "/categories.json")
+            });
+
             return response;
-      }
+        };
 
-      service.getItemsForCategory = function (categoryShortName){
-        var response = $http({
+    service.getItemsForCategory = function(shortCategoryName) {
+    var response = $http({
           method: "GET",
           url: (ApiBasePath + "/menu_items.json"),
-          params:{
-            category: categoryShortName
+          params: {
+            category: shortCategoryName
           }
-          });
-            return response;
+        })
+
+        return response;
       }
-    }
+    };
+  
 })();
