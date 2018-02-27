@@ -1,14 +1,15 @@
 (function() {
     'use strict';
 
-    angular.module('data')
+    angular.module('MenuApp',['ui.router'])
         .controller('CategoryController', CategoryController);
 
-    CategoryController.$inject = ['categories'];
+    CategoryController.$inject = ['items'];
 
-    function CategoryController(categories) {
-
-        var categoryList = this;
-        categoryList.items = categories;
-    }
+    function CategoryController(items) {
+var mainList = this;
+  mainList.items = item;
+        }
+        console.log("inside category controller")
+    
 })();

@@ -1,23 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+    <head ng-app="MenuApp">
         <title>Restaurant App</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
     </head>
-    <body  ng-app='MenuApp'>
-        <h1>Welcome to our Restaurant</h1>
-        <ui-view></ui-view>
+    <body >
+        <h1>Welcome to Restaurant app</h1>
+<!--
+        <div>
+            <ul>
+                <li ng-repeat="category in $ctrl.categories">{{category}}</li>
+                <li>ui-sref="item({categoryId:categoryItem.short_name})">{{categoryItem.name}}</li>
+                </ul>
             
-        <!--Libraries-->
-        <script src="lib/angular.min.js"></script>
-        <script src="lib/angular-ui-router.min.js" ></script>
+        </div>
+-->
+        <ui-view></ui-view>
         
-        <!--Modules-->
-         <script src="src/menuapp.module.js"></script>  
-        <script src="src/data.module.js" ></script> 
-       
+            
+        <script src="lib/angular.min.js"></script>
+        <script src="lib/angular-ui-router.min.js"></script>
+          
+<!--        <script src="src/data.module.js"></script> -->
+       <script src="src/menuapp.module.js"></script>  
         
         <!--Routes-->
         <script src="src/routes.js"></script>

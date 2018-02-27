@@ -1,13 +1,13 @@
 (function() {
     'use strict';
 
-angular.module('data')
-.component('menulist'),{
+angular.module('MenuApp')
+.component('items'),{
     templateUrl:'src/items.template.html',
    
     bindings:{
-        menulist:'<'
+        item:'<'
     }
 }
-
+console.log("inside item component")
 })();
