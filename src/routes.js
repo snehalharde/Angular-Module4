@@ -1,54 +1,48 @@
 (function () {
 'use strict';
 
-//angular.module('MenuApp',['ui.router']);
-    angular.module('MenuApp')
-    .config(RoutesConfig);
+
+angular.module('MenuApp')
+.config(RoutesConfig);
 
 RoutesConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
 
 function RoutesConfig($stateProvider, $urlRouterProvider) {
-    
+    console.log("somewhere in routes");
     // Redirect to home page if no other URL matches
     $urlRouterProvider.otherwise('/');
 
     $stateProvider
 
-    // Home page
+        // Home page
         .state('home', {
             url: '/',
-            templateUrl: 'src\home.template.html'
+           templateUrl: 'src/home.template.html'
+        
         })
 
-    // Categories page
+        // Categories page
         .state('categories',{
             url:'/categories',
-            templateUrl:'src\categories.template.html',
-            controller:'CategoryController as mainList',
+            templateUrl:'src/templates/categories.template.html',
+            controller:'CategoryController as categoryCtrl',
             resolve: {
-                categories:['MenuDataService',
-                function(MenuDataService){
-                    return MenuDataService.getAllCategories()
-                    .then(function (result){
-                        category = result.data;
-                    });
+                categories:['MenuDataService', function(MenuDataService){
+                    return MenuDataService.getAllCategories();
+
                 }]
             }
         
         })
-    // Items for the chosen category
+        // Items for the chosen category
         .state('itemDetail',{
-            url:'/item-detail/{categoryId}',
-            templateUrl:'src/items.template.html',
-            controller:'ItemsController as itemDetail',
+            url:'/items/{categoryShortName}',
+            templateUrl:'src/templates/items.template.html',
+            controller:'ItemsController as itemCtrl',
             resolve: {
-                item:['$stateParams','MenuDataService',
-                function($stateParams,MenuDataService){
-                    return MenuDataService.getItemsForCategory($stateParams.categoryId)
-                    .then(function (categories){
-                        return items[$stateParams.categoryId]
-                        
-                    });
+                menuitems:['$stateParams','MenuDataService', function($stateParams,MenuDataService){
+                     return MenuDataService.getItemsForCategory($stateParams.categoryShortName);
+                   
                 }]
             }
         });
