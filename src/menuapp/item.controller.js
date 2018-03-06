@@ -1,14 +1,18 @@
 (function () {
 'use strict';
 
-angular.module('MenuApp')
-.controller('ItemController', ItemController);
+angular.module('data')
+.controller('ItemsController', ItemsController);
 
-ItemController.$inject = ['menuItems']
-function ItemController(menuItems) {
+ItemsController.$inject = ['menuItems'];
+function ItemsController(menuItems) {
   var itemCtrl = this;
-  itemCtrl.item = menuItems;
-   
+  
+  itemCtrl.list = menuItems.menu_items;
+    itemCtrl.name = menuItems.category.name;
+    console.log("menuItems" ,menuItems)
+    console.log("itemCtrl.name" ,itemCtrl.name)
+  //itemDetail.items = item.menu_items;
 }
 
 })();
