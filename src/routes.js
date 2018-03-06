@@ -1,43 +1,43 @@
-(function() {
+(function () {
 'use strict';
 
-angular.module('menuApp')
+angular.module('MenuApp')
 .config(RoutesConfig);
 
-RoutesConfig.$inject =['$stateProvider', '$urlRouterProvider'];
+RoutesConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
+function RoutesConfig($stateProvider, $urlRouterProvider) {
 
-function RoutesConfig($stateProvider, $urlRouterProvider){
   $urlRouterProvider.otherwise('/');
 
   $stateProvider
+
   .state('home', {
-    url :'/',
+    url: '/',
     templateUrl: 'src/menuapp/templates/home.template.html'
   })
-
+  
   .state('categories', {
     url: '/categories',
     templateUrl: 'src/menuapp/templates/category.template.html',
-    controller: 'MenuAppController as menucategory',
+    controller: 'CategoriesController as categoryCtrl',
     resolve: {
-      categories: ['MenuDataService', function (MenuDataService) {
+      categories: ['MenuDataService', function(MenuDataService){
         return MenuDataService.getAllCategories();
       }]
     }
   })
 
-
-  .state('menulist', {
-    url: '/menulist/{itemCd}',
+  .state('itemDetail', {
+    url: '/items/{categoryShortName}',
     templateUrl: 'src/menuapp/templates/item.template.html',
-    controller: 'MenuItemController as menuItem',
+    controller: 'ItemController as itemCtrl',
     resolve: {
-      menulist: ['$stateParams', 'MenuDataService', 
-        function ($stateParams,MenuDataService) {
-        return MenuDataService.getItemsForCategory($stateParams.itemCd);
-      }]
+      menuItems: ['$stateParams', 'MenuDataService',
+            function ($stateParams, MenuDataService) {
+              return MenuDataService.getItemsForCategory($stateParams.categoryShortName);
+            }]
     }
-  })
+  });
 }
 
 })();

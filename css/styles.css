@@ -1,0 +1,25 @@
+body ,li,a{
+  font-size: 1.2em;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+  display: none;
+}
+
+
+li[ui-sref]:hover {
+  display: inline;
+  cursor: pointer;
+  border: solid black 1px;
+  
+}
+
+h1{
+    font-size: 2.8em;
+    font-style: italic;
+    color: chocolate;
+}
+
+
